@@ -97,16 +97,16 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
   return (
     <nav className="glass border-b border-white/20 dark:border-gray-700/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between py-3 sm:py-4 space-y-3 sm:space-y-0">
           {/* Current Section Display */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-3">
-              <span className="text-2xl">{getCurrentSection()?.icon}</span>
-              <div>
-                <h2 className="font-semibold text-gray-900 dark:text-white">
+          <div className="flex items-center justify-center sm:justify-start">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <span className="text-xl sm:text-2xl">{getCurrentSection()?.icon}</span>
+              <div className="text-center sm:text-left">
+                <h2 className="font-semibold text-gray-900 dark:text-white text-sm sm:text-base">
                   {getCurrentSection()?.label}
                 </h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 hidden sm:block">
                   {getCurrentSection()?.description}
                 </p>
               </div>
@@ -114,33 +114,34 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
           </div>
 
           {/* Quiz Button and Dropdown Menu */}
-          <div className="flex items-center space-x-3 relative">
+          <div className="flex items-center justify-center sm:justify-end space-x-2 sm:space-x-3">
             <button
               onClick={() => {
                 onSectionChange('quiz');
                 setIsDropdownOpen(false);
               }}
-              className="btn-primary px-4 py-2 text-base"
+              className="btn-primary px-3 sm:px-4 py-2 text-sm sm:text-base"
             >
               🎯 Take Quiz
             </button>
             <button
               ref={buttonRef}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center space-x-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200"
+              className="flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 text-sm sm:text-base"
             >
-              <span>📚 Browse Topics</span>
-              <svg className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="hidden sm:inline">📚 Browse Topics</span>
+              <span className="sm:hidden">📚</span>
+              <svg className={`w-3 h-3 sm:w-4 sm:h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             {/* Dropdown Content via Portal */}
-            <PortalDropdown anchorRef={buttonRef} open={isDropdownOpen} width={320}>
-              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-96 overflow-y-auto">
-                <div className="p-4 space-y-4">
+            <PortalDropdown anchorRef={buttonRef} open={isDropdownOpen} width={280}>
+              <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-80 sm:max-h-96 overflow-y-auto">
+                <div className="p-3 sm:p-4 space-y-3 sm:space-y-4">
                   {Object.entries(categories).map(([categoryName, sectionIds]) => (
                     <div key={categoryName} className="space-y-2">
-                      <h3 className="font-semibold text-gray-900 dark:text-white text-sm uppercase tracking-wide">
+                      <h3 className="font-semibold text-gray-900 dark:text-white text-xs sm:text-sm uppercase tracking-wide">
                         {categoryName}
                       </h3>
                       <div className="space-y-1">
@@ -154,16 +155,16 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection, onSectionChange 
                                 onSectionChange(section.id);
                                 setIsDropdownOpen(false);
                               }}
-                              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-md text-left transition-all duration-200 ${
+                              className={`w-full flex items-center space-x-2 sm:space-x-3 px-2 sm:px-3 py-2 rounded-md text-left transition-all duration-200 ${
                                 activeSection === section.id
                                   ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300'
                                   : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
                               }`}
                             >
-                              <span className="text-lg">{section.icon}</span>
-                              <div>
-                                <div className="font-medium text-sm">{section.label}</div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400">{section.description}</div>
+                              <span className="text-base sm:text-lg">{section.icon}</span>
+                              <div className="min-w-0 flex-1">
+                                <div className="font-medium text-xs sm:text-sm truncate">{section.label}</div>
+                                <div className="text-xs text-gray-500 dark:text-gray-400 hidden sm:block">{section.description}</div>
                               </div>
                             </button>
                           );

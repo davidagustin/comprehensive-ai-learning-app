@@ -98,51 +98,51 @@ const MLAlgorithms: React.FC = () => {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <div className="text-center space-y-6">
-        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 px-6 py-3 rounded-full">
-          <span className="text-2xl">🤖</span>
-          <span className="font-semibold text-blue-700 dark:text-blue-300">ML Algorithm Mnemonics</span>
+      <div className="text-center space-y-4 sm:space-y-6">
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 px-4 sm:px-6 py-2 sm:py-3 rounded-full">
+          <span className="text-xl sm:text-2xl">🤖</span>
+          <span className="font-semibold text-blue-700 dark:text-blue-300 text-sm sm:text-base">ML Algorithm Mnemonics</span>
         </div>
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white">
           Master Machine Learning Algorithms
         </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg lg:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
           Learn through memorable frameworks and characters that make complex concepts stick in your mind forever
         </p>
       </div>
 
       {/* Frameworks Section */}
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         <div className="text-center">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">📚 Mnemonic Frameworks</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300">Memorize algorithms with these powerful memory techniques</p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">📚 Mnemonic Frameworks</h3>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300">Memorize algorithms with these powerful memory techniques</p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {frameworks.map((framework, index) => (
-            <div key={index} className="card p-8 hover:shadow-xl transition-all duration-300 group">
-              <div className="mb-6">
-                <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <div key={index} className="card p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 group">
+              <div className="mb-4 sm:mb-6">
+                <h4 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {framework.title}
                 </h4>
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-4 rounded-lg">
-                  <p className="text-blue-700 dark:text-blue-300 font-semibold italic text-lg">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-3 sm:p-4 rounded-lg">
+                  <p className="text-blue-700 dark:text-blue-300 font-semibold italic text-sm sm:text-base lg:text-lg">
                     "{framework.mnemonic}"
                   </p>
                 </div>
               </div>
               
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {framework.items.map((item, itemIndex) => (
-                  <div key={itemIndex} className="flex items-start space-x-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                    <span className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-lg">
+                  <div key={itemIndex} className="flex items-start space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <span className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center font-bold text-base sm:text-lg shadow-lg">
                       {item.letter}
                     </span>
-                    <div className="flex-1">
-                      <h5 className="font-bold text-gray-900 dark:text-white text-lg mb-1">
+                    <div className="flex-1 min-w-0">
+                      <h5 className="font-bold text-gray-900 dark:text-white text-base sm:text-lg mb-1">
                         {item.meaning}
                       </h5>
-                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-sm sm:text-base">
                         {item.description}
                       </p>
                     </div>
@@ -155,28 +155,28 @@ const MLAlgorithms: React.FC = () => {
       </div>
 
       {/* Characters Section */}
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         <div className="text-center">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">👥 The ML Avengers</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300">Meet the characters that make algorithms memorable</p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">👥 The ML Avengers</h3>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300">Meet the characters that make algorithms memorable</p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {characters.map((character, index) => (
-            <div key={index} className="card p-6 text-center hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
-              <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
+            <div key={index} className="card p-4 sm:p-6 text-center hover:shadow-xl transition-all duration-300 group hover:-translate-y-1">
+              <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
                 {character.emoji}
               </div>
-              <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-2">
+              <h4 className="font-bold text-gray-900 dark:text-white text-base sm:text-lg mb-2">
                 {character.name}
               </h4>
-              <div className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-3">
+              <div className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-medium mb-2 sm:mb-3">
                 {character.algorithm}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400 italic mb-3 leading-relaxed">
+              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 italic mb-2 sm:mb-3 leading-relaxed">
                 "{character.catchphrase}"
               </div>
-              <div className="text-xs text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-700 px-3 py-2 rounded-full">
+              <div className="text-xs text-gray-500 dark:text-gray-500 bg-gray-100 dark:bg-gray-700 px-2 sm:px-3 py-1 sm:py-2 rounded-full">
                 {character.trait}
               </div>
             </div>
@@ -185,18 +185,18 @@ const MLAlgorithms: React.FC = () => {
       </div>
 
       {/* WISP Framework Section */}
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         <div className="text-center">
-          <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">🔍 WISP Decision Framework</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300">A systematic approach to choosing the right algorithm</p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">🔍 WISP Decision Framework</h3>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300">A systematic approach to choosing the right algorithm</p>
         </div>
         
-        <div className="card p-8">
-          <div className="mb-8 text-center">
-            <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <div className="card p-4 sm:p-6 lg:p-8">
+          <div className="mb-6 sm:mb-8 text-center">
+            <h4 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
               "What Input Size Performance"
             </h4>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
               Four key questions to guide your algorithm selection
             </p>
           </div>

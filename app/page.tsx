@@ -114,18 +114,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <header className="sticky top-0 z-50 glass border-b border-white/20 dark:border-gray-700/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
             <div className="text-center sm:text-left">
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 🧠 AI Learning Hub
               </h1>
-              <p className="mt-2 text-lg text-gray-600 dark:text-gray-300 font-medium">
+              <p className="mt-1 sm:mt-2 text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300 font-medium">
                 Master AI concepts with interactive mnemonics, quizzes, and memory techniques
               </p>
             </div>
-            <div className="mt-4 sm:mt-0">
-              <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <div className="flex justify-center sm:justify-end">
+              <div className="flex items-center space-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                 <span>Ready to learn</span>
               </div>
@@ -139,19 +139,19 @@ export default function Home() {
         onSectionChange={setActiveSection} 
       />
       
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="min-h-[calc(100vh-200px)]">
           {renderSection()}
         </div>
       </main>
 
-      <footer className="mt-16 glass border-t border-white/20 dark:border-gray-700/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <footer className="mt-8 sm:mt-16 glass border-t border-white/20 dark:border-gray-700/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="text-center">
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Built with ❤️ using Next.js, TypeScript, and Tailwind CSS
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500 mt-2">
               Master the art of machine learning through memorable frameworks and interactive learning
             </p>
           </div>
