@@ -202,7 +202,7 @@ Each ML algorithm is personified with memorable characters:
 
 ## 🔧 Recent Updates
 
-### December 2024
+### July 2025
 - ✅ **Mobile Responsiveness**: Complete mobile-first responsive design implementation
 - ✅ **Enhanced UI/UX**: Improved navigation, buttons, and component layouts for all screen sizes
 - ✅ **Fixed CSS Issues**: Resolved Tailwind CSS v4 compatibility issues
@@ -264,4 +264,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Ready to master AI? Start learning with the AI Learning Hub! 🚀**
 
-*Last updated: December 2024*
+*Last updated: July 2025*
