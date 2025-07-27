@@ -250,7 +250,15 @@ const LSTM: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             Take the quiz to reinforce what you've learned about LSTMs!
           </p>
-          <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200">
+          <button 
+            onClick={() => {
+              window.location.hash = 'quiz';
+              window.dispatchEvent(new CustomEvent('navigateToQuiz', { 
+                detail: { section: 'lstm' } 
+              }));
+            }}
+            className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+          >
             🎯 Take LSTM Quiz
           </button>
         </div>

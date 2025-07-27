@@ -438,7 +438,17 @@ const DataAugmentation: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             Take the quiz to reinforce what you've learned about data augmentation!
           </p>
-          <button className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200">
+          <button 
+            onClick={() => {
+              // Navigate to quiz section
+              window.location.hash = 'quiz';
+              // Trigger a custom event to notify the parent component
+              window.dispatchEvent(new CustomEvent('navigateToQuiz', { 
+                detail: { section: 'data-augmentation' } 
+              }));
+            }}
+            className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105"
+          >
             🎯 Take Data Augmentation Quiz
           </button>
         </div>

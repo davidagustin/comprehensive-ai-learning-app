@@ -40,8 +40,10 @@ const PlaceholderSection: React.FC<PlaceholderSectionProps> = ({ title, descript
                 className="btn-primary text-lg px-8 py-3 inline-flex items-center space-x-2"
                 onClick={(e) => {
                   e.preventDefault();
-                  // This would need to be handled by the parent component
                   window.location.hash = 'quiz';
+                  window.dispatchEvent(new CustomEvent('navigateToQuiz', { 
+                    detail: { section: 'placeholder' } 
+                  }));
                 }}
               >
                 <span>🎯</span>

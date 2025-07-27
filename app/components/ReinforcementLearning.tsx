@@ -440,7 +440,15 @@ const ReinforcementLearning: React.FC = () => {
           <p className="text-gray-600 dark:text-gray-300 mb-6">
             Take the quiz to reinforce what you've learned about reinforcement learning!
           </p>
-          <button className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-200">
+          <button 
+            onClick={() => {
+              window.location.hash = 'quiz';
+              window.dispatchEvent(new CustomEvent('navigateToQuiz', { 
+                detail: { section: 'reinforcement-learning' } 
+              }));
+            }}
+            className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-200 transform hover:scale-105"
+          >
             🎯 Take RL Quiz
           </button>
         </div>

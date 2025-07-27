@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import type { Section } from './components/Navigation';
 import MLAlgorithms from './components/MLAlgorithms';
@@ -39,6 +39,19 @@ import PrivacySecurity from './components/PrivacySecurity';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<Section>('ml-algorithms');
+
+  // Handle navigation to quiz from component buttons
+  useEffect(() => {
+    const handleNavigateToQuiz = (event: CustomEvent) => {
+      setActiveSection('quiz');
+    };
+
+    window.addEventListener('navigateToQuiz', handleNavigateToQuiz as EventListener);
+    
+    return () => {
+      window.removeEventListener('navigateToQuiz', handleNavigateToQuiz as EventListener);
+    };
+  }, []);
 
   const renderSection = () => {
     switch (activeSection) {
