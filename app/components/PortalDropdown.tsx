@@ -24,10 +24,6 @@ const PortalDropdown: React.FC<PortalDropdownProps> = ({ children, anchorRef, op
   }, [open, anchorRef, width]);
 
   if (!open) return null;
-  
-  // Ensure we're in the browser environment
-  if (typeof window === 'undefined') return null;
-  
   return createPortal(
     <div ref={dropdownRef} style={{ width, zIndex: 9999 }}>
       {children}

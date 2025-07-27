@@ -158,7 +158,7 @@ Each ML algorithm is personified with memorable characters:
 
 ### ✅ Live Application
 
-**🌐 Live Demo**: [https://comprehensive-ai-learning-8muco9lxv-cryptomans-projects.vercel.app](https://comprehensive-ai-learning-8muco9lxv-cryptomans-projects.vercel.app)
+**🌐 Live Demo**: [https://comprehensive-ai-learning-app-cryptomans-projects.vercel.app](https://comprehensive-ai-learning-app-cryptomans-projects.vercel.app)
 
 ### Vercel Deployment (Recommended)
 

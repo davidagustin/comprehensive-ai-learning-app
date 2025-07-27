@@ -6,6 +6,36 @@ import type { Section } from './components/Navigation';
 import MLAlgorithms from './components/MLAlgorithms';
 import Quiz from './components/Quiz';
 import PlaceholderSection from './components/PlaceholderSection';
+import DataSplitting from './components/DataSplitting';
+import Epochs from './components/Epochs';
+import FeatureSelection from './components/FeatureSelection';
+import DataAugmentation from './components/DataAugmentation';
+import ModelEvaluation from './components/ModelEvaluation';
+import CrossFoldValidation from './components/CrossFoldValidation';
+import HyperparameterTuning from './components/HyperparameterTuning';
+import ExperimentTracking from './components/ExperimentTracking';
+import NeuralNetworks from './components/NeuralNetworks';
+import DeepLearning from './components/DeepLearning';
+import ComputerVision from './components/ComputerVision';
+import CNN from './components/CNN';
+import NLP from './components/NLP';
+import RNN from './components/RNN';
+import LSTM from './components/LSTM';
+import AttentionMechanisms from './components/AttentionMechanisms';
+import Transformers from './components/Transformers';
+import BERT from './components/BERT';
+import GPT from './components/GPT';
+import ReinforcementLearning from './components/ReinforcementLearning';
+import TransferLearning from './components/TransferLearning';
+import GAN from './components/GAN';
+import Autoencoders from './components/Autoencoders';
+import MLOps from './components/MLOps';
+import ModelDeployment from './components/ModelDeployment';
+import Scalability from './components/Scalability';
+import ProductionSystems from './components/ProductionSystems';
+import ModelInterpretability from './components/ModelInterpretability';
+import BiasFairness from './components/BiasFairness';
+import PrivacySecurity from './components/PrivacySecurity';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<Section>('ml-algorithms');
@@ -17,185 +47,65 @@ export default function Home() {
       case 'quiz':
         return <Quiz />;
       case 'data-splitting':
-        return <PlaceholderSection 
-          title="Data Splitting" 
-          description="Master train-test splitting techniques and data partitioning strategies for robust model development."
-          icon="📊"
-        />;
+        return <DataSplitting />;
       case 'epochs':
-        return <PlaceholderSection 
-          title="Epochs" 
-          description="Understand epochs in model training, iteration strategies, and convergence patterns."
-          icon="⏳"
-        />;
+        return <Epochs />;
       case 'feature-selection':
-        return <PlaceholderSection 
-          title="Feature Selection" 
-          description="Learn feature selection and engineering techniques to improve model performance."
-          icon="🔍"
-        />;
+        return <FeatureSelection />;
       case 'data-augmentation':
-        return <PlaceholderSection 
-          title="Data Augmentation" 
-          description="Master data augmentation techniques and synthetic data generation methods."
-          icon="🔄"
-        />;
+        return <DataAugmentation />;
       case 'model-evaluation':
-        return <PlaceholderSection 
-          title="Model Evaluation" 
-          description="Explore model evaluation metrics and techniques for comprehensive model assessment."
-          icon="📈"
-        />;
+        return <ModelEvaluation />;
       case 'cross-fold-validation':
-        return <PlaceholderSection 
-          title="Cross-Fold Validation" 
-          description="Learn cross-validation and resampling methods for robust model validation."
-          icon="🔄"
-        />;
+        return <CrossFoldValidation />;
       case 'hyperparameter-tuning':
-        return <PlaceholderSection 
-          title="Hyperparameter Tuning" 
-          description="Master hyperparameter optimization techniques for model performance enhancement."
-          icon="⚙️"
-        />;
+        return <HyperparameterTuning />;
       case 'experiment-tracking':
-        return <PlaceholderSection 
-          title="Experiment Tracking" 
-          description="Learn experiment tracking and reproducibility practices for ML projects."
-          icon="📋"
-        />;
+        return <ExperimentTracking />;
       case 'neural-networks':
-        return <PlaceholderSection 
-          title="Neural Networks" 
-          description="Explore the fundamentals of neural networks and their applications."
-          icon="🧠"
-        />;
+        return <NeuralNetworks />;
       case 'deep-learning':
-        return <PlaceholderSection 
-          title="Deep Learning" 
-          description="Dive into deep learning architectures and advanced neural network concepts."
-          icon="🔬"
-        />;
+        return <DeepLearning />;
       case 'computer-vision':
-        return <PlaceholderSection 
-          title="Computer Vision" 
-          description="Learn image processing and computer vision techniques and applications."
-          icon="👁️"
-        />;
+        return <ComputerVision />;
       case 'cnn':
-        return <PlaceholderSection 
-          title="Convolutional Neural Networks" 
-          description="Master CNN architectures and their applications in image processing."
-          icon="🖼️"
-        />;
+        return <CNN />;
       case 'nlp':
-        return <PlaceholderSection 
-          title="Natural Language Processing" 
-          description="Explore text processing and NLP techniques for language understanding."
-          icon="💬"
-        />;
+        return <NLP />;
       case 'rnn':
-        return <PlaceholderSection 
-          title="Recurrent Neural Networks" 
-          description="Learn RNN architectures for sequential data processing."
-          icon="🔄"
-        />;
+        return <RNN />;
       case 'lstm':
-        return <PlaceholderSection 
-          title="Long Short-Term Memory" 
-          description="Master LSTM networks and their applications in sequence modeling."
-          icon="🧠"
-        />;
+        return <LSTM />;
       case 'attention-mechanisms':
-        return <PlaceholderSection 
-          title="Attention Mechanisms" 
-          description="Understand attention and self-attention concepts in modern AI."
-          icon="👁️"
-        />;
+        return <AttentionMechanisms />;
       case 'transformers':
-        return <PlaceholderSection 
-          title="Transformers" 
-          description="Explore transformer architecture fundamentals and applications."
-          icon="⚡"
-        />;
+        return <Transformers />;
       case 'bert':
-        return <PlaceholderSection 
-          title="BERT" 
-          description="Learn about BERT and bidirectional transformers for language understanding."
-          icon="🤖"
-        />;
+        return <BERT />;
       case 'gpt':
-        return <PlaceholderSection 
-          title="GPT Models" 
-          description="Explore Generative Pre-trained Transformers and their capabilities."
-          icon="🧠"
-        />;
+        return <GPT />;
       case 'reinforcement-learning':
-        return <PlaceholderSection 
-          title="Reinforcement Learning" 
-          description="Master RL algorithms and their applications in decision-making systems."
-          icon="🎮"
-        />;
+        return <ReinforcementLearning />;
       case 'transfer-learning':
-        return <PlaceholderSection 
-          title="Transfer Learning" 
-          description="Learn knowledge transfer techniques between models and domains."
-          icon="🔄"
-        />;
+        return <TransferLearning />;
       case 'gan':
-        return <PlaceholderSection 
-          title="Generative Adversarial Networks" 
-          description="Explore GANs for generative modeling and creative AI applications."
-          icon="🎨"
-        />;
+        return <GAN />;
       case 'autoencoders':
-        return <PlaceholderSection 
-          title="Autoencoders" 
-          description="Master autoencoder architectures for dimensionality reduction and feature learning."
-          icon="🔐"
-        />;
+        return <Autoencoders />;
       case 'mlops':
-        return <PlaceholderSection 
-          title="MLOps" 
-          description="Learn Machine Learning Operations for production ML systems."
-          icon="⚙️"
-        />;
+        return <MLOps />;
       case 'deployment':
-        return <PlaceholderSection 
-          title="Model Deployment" 
-          description="Master deploying ML models to production environments."
-          icon="🚀"
-        />;
+        return <ModelDeployment />;
       case 'scalability':
-        return <PlaceholderSection 
-          title="Scalability" 
-          description="Learn techniques for scaling ML systems and handling large-scale data."
-          icon="📈"
-        />;
+        return <Scalability />;
       case 'production-systems':
-        return <PlaceholderSection 
-          title="Production Systems" 
-          description="Design and implement production-ready ML system architectures."
-          icon="🏭"
-        />;
+        return <ProductionSystems />;
       case 'model-interpretability':
-        return <PlaceholderSection 
-          title="Model Interpretability" 
-          description="Understand model decisions and build interpretable AI systems."
-          icon="🔍"
-        />;
+        return <ModelInterpretability />;
       case 'bias-fairness':
-        return <PlaceholderSection 
-          title="Bias & Fairness" 
-          description="Address bias in ML models and ensure fair AI systems."
-          icon="⚖️"
-        />;
+        return <BiasFairness />;
       case 'privacy-security':
-        return <PlaceholderSection 
-          title="Privacy & Security" 
-          description="Learn ML privacy and security concerns and mitigation strategies."
-          icon="🔒"
-        />;
+        return <PrivacySecurity />;
       default:
         return <MLAlgorithms />;
     }

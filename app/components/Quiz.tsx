@@ -37,6 +37,7 @@ const Quiz: React.FC = () => {
   const [quizCategory, setQuizCategory] = useState<string | null>(null);
   const [questionCount, setQuestionCount] = useState<string>('');
 
+
   // Combine all questions from different files
   const allQuestions: Question[] = [
     ...mlAlgorithmQuestions,
@@ -55,6 +56,8 @@ const Quiz: React.FC = () => {
   const filteredQuestions = quizCategory && quizCategory !== 'All'
     ? allQuestions.filter(q => q.category === quizCategory)
     : allQuestions;
+
+
 
   // Helper to check if the question count is valid
   const isQuestionCountValid =
@@ -111,101 +114,140 @@ const Quiz: React.FC = () => {
 
   const getScoreMessage = () => {
     const percentage = (quizScore / quizData.length) * 100;
-    if (percentage >= 90) return { message: "🎉 Outstanding! You're an AI expert!", color: "text-green-600" };
-    if (percentage >= 80) return { message: "🌟 Excellent! Great understanding!", color: "text-green-500" };
-    if (percentage >= 70) return { message: "👍 Good job! Solid knowledge!", color: "text-blue-600" };
-    if (percentage >= 60) return { message: "📚 Not bad! Keep learning!", color: "text-yellow-600" };
-    return { message: "📖 Keep studying! You'll get there!", color: "text-red-600" };
+    
+    if (percentage >= 90) {
+      return { message: "🎉 Excellent! You've mastered the mnemonics!", color: "text-green-600 dark:text-green-400" };
+    } else if (percentage >= 70) {
+      return { message: "👍 Good job! Keep practicing to improve!", color: "text-blue-600 dark:text-blue-400" };
+    } else if (percentage >= 50) {
+      return { message: "📚 Not bad! Review the frameworks and try again!", color: "text-yellow-600 dark:text-yellow-400" };
+    } else {
+      return { message: "💪 Keep studying! The mnemonics will help you improve!", color: "text-red-600 dark:text-red-400" };
+    }
   };
 
-  if (!quizStarted) {
+  // Quiz Selection Page
+  if (!quizCategory) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-12">
         {/* Hero Section */}
         <div className="text-center space-y-6">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/20 dark:to-blue-900/20 px-6 py-3 rounded-full">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 px-6 py-3 rounded-full">
             <span className="text-2xl">🎯</span>
-            <span className="font-semibold text-gray-900 dark:text-white">Knowledge Assessment</span>
+            <span className="font-semibold text-purple-700 dark:text-purple-300">Quiz Center</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-            Test Your AI Knowledge
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Challenge yourself with interactive quizzes covering all aspects of machine learning. 
-            Choose your topics and question count to customize your learning experience.
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+            Choose Your Quiz
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Select a topic to test your knowledge with interactive questions
           </p>
         </div>
 
-        {/* Quiz Setup */}
-        <div className="glass p-8 rounded-xl space-y-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white text-center">
-            🎯 Quiz Configuration
+        {/* Modern Navigation - Grid Layout */}
+        <nav className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8 max-w-7xl mx-auto">
+          {QUIZ_CATEGORIES.map((cat) => (
+            <button
+              key={cat.value}
+              className="flex flex-col items-center justify-center px-6 py-5 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-base font-semibold shadow-sm hover:bg-blue-50 dark:hover:bg-blue-900/20 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 transition-all duration-200 cursor-pointer min-h-[120px]"
+              onClick={() => setQuizCategory(cat.value)}
+              tabIndex={0}
+              aria-label={cat.label}
+            >
+              <span className="text-2xl mb-2">{cat.icon}</span>
+              <span className="mb-1 text-gray-900 dark:text-white text-center">{cat.label}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 font-normal text-center leading-tight">{cat.description}</span>
+            </button>
+          ))}
+        </nav>
+      </div>
+    );
+  }
+
+  // Quiz Information Page
+  if (!quizStarted) {
+    return (
+      <div className="space-y-12">
+        {/* Hero Section */}
+        <div className="text-center space-y-6">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 px-6 py-3 rounded-full">
+            <span className="text-2xl">🎯</span>
+            <span className="font-semibold text-purple-700 dark:text-purple-300">{quizCategory === 'All' ? 'All Topics Quiz' : `${quizCategory} Quiz`}</span>
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+            Test Your Knowledge
           </h2>
-          
-          {/* Category Selection */}
-          <div className="space-y-4">
-            <label className="block text-lg font-semibold text-gray-900 dark:text-white">
-              📚 Select Topic Category
-            </label>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {QUIZ_CATEGORIES.map((category) => (
-                <button
-                  key={category.value}
-                  onClick={() => setQuizCategory(category.value)}
-                  className={`p-4 rounded-lg border-2 transition-all duration-200 text-left ${
-                    quizCategory === category.value
-                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                      : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
-                  }`}
-                >
-                  <div className="flex items-center space-x-3">
-                    <span className="text-2xl">{category.icon}</span>
-                    <div>
-                      <div className="font-semibold text-gray-900 dark:text-white">
-                        {category.label}
-                      </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {category.description}
-                      </div>
-                    </div>
-                  </div>
-                </button>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            {quizCategory === 'All'
+              ? 'Challenge yourself with questions covering ML algorithms, data splitting, and applications'
+              : `Challenge yourself with questions covering ${quizCategory}`}
+          </p>
+        </div>
+        
+        <div className="max-w-2xl mx-auto space-y-8">
+          <div className="card p-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">📋 Quiz Information</h3>
+            <div className="space-y-4">
+              {[
+                { icon: "🎲", text: `${filteredQuestions.length} total questions available in this section` },
+                { icon: "⚡", text: "Immediate feedback after each question" }
+              ].map((item, index) => (
+                <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-2xl">{item.icon}</span>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">{item.text}</span>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Question Count */}
-          <div className="space-y-4">
-            <label className="block text-lg font-semibold text-gray-900 dark:text-white">
-              📊 Number of Questions
-            </label>
-            <div className="flex items-center space-x-4">
-              <input
-                type="text"
-                value={questionCount}
-                onChange={(e) => setQuestionCount(e.target.value)}
-                placeholder={`Max: ${filteredQuestions.length}`}
-                className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-              />
-              <span className="text-gray-600 dark:text-gray-400">
-                Available: {filteredQuestions.length}
-              </span>
+          {/* Question Count Selector */}
+          <div className="card p-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">📊 Choose Question Count</h3>
+            <div className="max-w-md mx-auto">
+              <div className="flex items-center space-x-4">
+                <label htmlFor="questionCount" className="text-gray-700 dark:text-gray-300 font-medium">
+                  Number of questions:
+                </label>
+                <input
+                  id="questionCount"
+                  type="text"
+                  value={questionCount}
+                  onChange={(e) => setQuestionCount(e.target.value.replace(/[^\d]/g, ''))}
+                  className="input w-24 text-center cursor-text"
+                  placeholder="All"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                  Suggested: 5, 10, 15, 20, 25, 30
+                </p>
+                <p className="text-gray-600 dark:text-gray-400 mt-2">
+                  You'll get {(!questionCount || questionCount === '0') ? filteredQuestions.length : Math.min(parseInt(questionCount), filteredQuestions.length)} questions from {filteredQuestions.length} available
+                </p>
+              </div>
             </div>
-            {!isQuestionCountValid && questionCount && (
-              <p className="text-red-600 text-sm">
-                Please enter a valid number between 1 and {filteredQuestions.length}
-              </p>
-            )}
           </div>
-
-          {/* Start Button */}
-          <div className="text-center pt-4">
-            <button
+          
+          <div className="text-center flex flex-col gap-4">
+            <button 
+              className="btn-primary text-lg px-12 py-4 relative overflow-hidden group cursor-pointer"
               onClick={startQuiz}
               disabled={!isQuestionCountValid || isLoading}
-              className="btn-primary px-8 py-3 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? '🔄 Loading...' : '🚀 Start Quiz'}
+              {isLoading ? (
+                <div className="flex items-center space-x-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Loading Quiz...</span>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <span>🚀</span>
+                  <span>Start Quiz</span>
+                </div>
+              )}
+            </button>
+            <button className="btn-secondary text-lg px-12 py-4 cursor-pointer" onClick={resetQuiz}>
+              🔄 Choose Different Topic
             </button>
           </div>
         </div>
@@ -213,102 +255,177 @@ const Quiz: React.FC = () => {
     );
   }
 
+  // Results Page
   if (showResults) {
+    const percentage = (quizScore / quizData.length) * 100;
     const scoreInfo = getScoreMessage();
+    
     return (
-      <div className="space-y-8">
-        <div className="text-center space-y-6">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-            🎉 Quiz Complete!
-          </h1>
-          <div className="glass p-8 rounded-xl max-w-md mx-auto">
-            <div className="text-6xl mb-4">🎯</div>
-            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              {quizScore}/{quizData.length}
+      <div className="space-y-12">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">🎯 Quiz Results</h2>
+        </div>
+        
+        <div className="max-w-2xl mx-auto">
+          <div className="card p-8 text-center">
+            {/* Score Display */}
+            <div className="mb-8">
+              <div className="relative w-40 h-40 mx-auto mb-6">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                  <path
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="#e5e7eb"
+                    strokeWidth="2"
+                  />
+                  <path
+                    d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                    fill="none"
+                    stroke="#3b82f6"
+                    strokeWidth="2"
+                    strokeDasharray={`${percentage}, 100`}
+                    strokeLinecap="round"
+                    className="transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-gray-900 dark:text-white">{quizScore}</div>
+                    <div className="text-gray-600 dark:text-gray-400">/ {quizData.length}</div>
+                  </div>
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">
+                {percentage.toFixed(1)}%
+              </div>
             </div>
-            <div className={`text-xl font-semibold mb-4 ${scoreInfo.color}`}>
-              {scoreInfo.message}
+            
+            {/* Score Message */}
+            <div className="mb-8">
+              <h3 className={`text-xl font-semibold ${scoreInfo.color}`}>
+                {scoreInfo.message}
+              </h3>
             </div>
-            <div className="text-gray-600 dark:text-gray-400">
-              {Math.round((quizScore / quizData.length) * 100)}% Score
+            
+            {/* Quiz Stats */}
+            <div className="text-gray-600 dark:text-gray-400 mb-8 space-y-2">
+              <p>This quiz randomly selected {quizData.length} questions from a bank of {filteredQuestions.length} total questions.</p>
+              <p>Take the quiz again for different questions!</p>
+            </div>
+            
+            {/* Action Buttons */}
+            <div className="space-y-4">
+              <button 
+                className="btn-primary w-full cursor-pointer"
+                onClick={startQuiz}
+              >
+                🔄 Take Quiz Again
+              </button>
+              <button 
+                className="btn-secondary w-full cursor-pointer"
+                onClick={resetQuiz}
+              >
+                🏠 Back to Quiz Selection
+              </button>
             </div>
           </div>
-          <button
-            onClick={resetQuiz}
-            className="btn-primary px-6 py-3 text-lg"
-          >
-            🔄 Take Another Quiz
-          </button>
         </div>
       </div>
     );
   }
 
+  // Quiz in Progress
+  const progress = ((currentQuiz + 1) / quizData.length) * 100;
   const currentQuestion = quizData[currentQuiz];
 
   return (
     <div className="space-y-8">
-      {/* Progress Bar */}
-      <div className="space-y-2">
-        <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
-          <span>Question {currentQuiz + 1} of {quizData.length}</span>
-          <span>Score: {quizScore}</span>
-        </div>
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-          <div 
-            className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-            style={{ width: `${((currentQuiz + 1) / quizData.length) * 100}%` }}
-          ></div>
+      {/* Header */}
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">🎯 Quiz in Progress</h2>
+        <div className="text-gray-600 dark:text-gray-400 text-lg">
+          Question {currentQuiz + 1} of {quizData.length} • Score: {quizScore}
         </div>
       </div>
-
-      {/* Question */}
-      <div className="glass p-8 rounded-xl space-y-6">
-        <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {currentQuestion.question}
-          </h2>
-          {/* Explanation removed as it's not in the Question interface */}
-        </div>
-
-        {/* Answers */}
-        <div className="space-y-3">
-          {currentQuestion.options.map((answer, index) => (
-            <button
-              key={index}
-              onClick={() => selectAnswer(index)}
-              disabled={selectedAnswer !== null}
-              className={`w-full p-4 rounded-lg border-2 text-left transition-all duration-200 ${
-                selectedAnswer === index
-                  ? index === currentQuestion.correct
-                    ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                    : 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                  : selectedAnswer !== null && index === currentQuestion.correct
-                  ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                  : 'border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600'
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                <span className="text-lg font-bold text-gray-600 dark:text-gray-400">
-                  {String.fromCharCode(65 + index)}
-                </span>
-                <span className="text-gray-900 dark:text-white">{answer}</span>
-              </div>
-            </button>
-          ))}
-        </div>
-
-        {/* Next Button */}
-        {selectedAnswer !== null && (
-          <div className="text-center pt-4">
-            <button
-              onClick={nextQuestion}
-              className="btn-primary px-6 py-3 text-lg"
-            >
-              {currentQuiz + 1 >= quizData.length ? '🎯 See Results' : '⏭️ Next Question'}
-            </button>
+      
+      <div className="max-w-4xl mx-auto">
+        {/* Progress Bar */}
+        <div className="mb-8">
+          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+            <div 
+              className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${progress}%` }}
+            ></div>
           </div>
-        )}
+          <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mt-2">
+            <span>Progress</span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+        </div>
+        
+        {/* Question Card */}
+        <div className="card p-8">
+          {/* Category Badge */}
+          <div className="mb-6">
+            <span className="inline-block bg-gradient-to-r from-purple-100 to-pink-100 dark:from-purple-900/20 dark:to-pink-900/20 text-purple-800 dark:text-purple-200 text-sm font-medium px-4 py-2 rounded-full">
+              Category: {currentQuestion.category}
+            </span>
+          </div>
+          
+          {/* Question */}
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-relaxed">
+              {currentQuestion.question}
+            </h3>
+          </div>
+          
+          {/* Answer Options */}
+          <div className="space-y-4 mb-8">
+            {currentQuestion.options.map((option, index) => (
+              <button
+                key={index}
+                className={`w-full text-left p-6 rounded-xl border-2 transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 cursor-pointer ${
+                  selectedAnswer === index
+                    ? index === currentQuestion.correct
+                      ? 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200 shadow-lg'
+                      : 'border-red-500 bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 shadow-lg'
+                    : selectedAnswer !== null && index === currentQuestion.correct
+                    ? 'border-green-500 bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-200 shadow-lg'
+                    : 'border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 text-gray-900 dark:text-white bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'
+                }`}
+                onClick={() => selectAnswer(index)}
+                disabled={selectedAnswer !== null}
+              >
+                <div className="flex items-center space-x-4">
+                  <span className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                    selectedAnswer === index
+                      ? index === currentQuestion.correct
+                        ? 'bg-green-500 text-white'
+                        : 'bg-red-500 text-white'
+                      : selectedAnswer !== null && index === currentQuestion.correct
+                      ? 'bg-green-500 text-white'
+                      : 'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300'
+                  }`}>
+                    {String.fromCharCode(65 + index)}
+                  </span>
+                  <span className="font-medium leading-relaxed">{option}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+          
+          {/* Next Button */}
+          {selectedAnswer !== null && (
+            <div className="text-center">
+              <button 
+                className="btn-primary text-lg px-8 py-4 cursor-pointer"
+                onClick={nextQuestion}
+              >
+                {currentQuiz + 1 >= quizData.length ? '🏁 Finish Quiz' : '➡️ Next Question'}
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
